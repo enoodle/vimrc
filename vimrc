@@ -30,16 +30,23 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'tpope/vim-rails'
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
-" FuzzyFinder
+" FuzzyFinder:
 Plugin 'vim-scripts/FuzzyFinder'
-" GO
+" GO:
 Plugin 'fatih/vim-go'
 " vim-misc for easytags
 Plugin 'xolox/vim-misc'
-" easytags
+" Easytags:
 Plugin 'xolox/vim-easytags'
-" Splitting and joining lines easily
-Plugin 'AndrewRadev/splitjoin.vim'
+" Endwise:
+"Plugin 'tpope/vim-endwise' " destroys tabs?
+" Snippets Plugin: ( + dependencies )
+Plugin 'MarcWeber/vim-addon-mw-utils'
+Plugin 'tomtom/tlib_vim'
+Plugin 'garbas/vim-snipmate'
+
+" Optional:
+Plugin 'honza/vim-snippets'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -119,6 +126,10 @@ endfunction
 "------------------------------
 
 "Indentation
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set autoindent
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal expandtab
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal shiftwidth=4
@@ -160,3 +171,6 @@ nmap <F3> :FufFileWithCurrentBufferDir<CR>
 " easytags
 :set tags=./tags;
 :let g:easytags_dynamic_files = 1
+
+" SnipMate:
+:imap <C-J> <Plug>snipMateNextOrTrigger
