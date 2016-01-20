@@ -169,8 +169,11 @@ nmap <silent> <leader>sv :so $MYVIMRC<CR>
 nmap <F3> :FufFileWithCurrentBufferDir<CR> 
 
 " easytags
-:set tags=./tags;
+:set tags=./tags,.tags;
 :let g:easytags_dynamic_files = 1
+
+" ctrlp:
+let g:ctrlp_max_files=0
 
 " SnipMate:
 :imap <C-J> <Plug>snipMateNextOrTrigger
