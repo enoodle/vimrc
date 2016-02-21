@@ -86,7 +86,7 @@ set cpt=.,w,b,u,t,i           " completion by all buffers, included files, etc
 set bs=eol,start,indent       " allow backspacing over autoindent, line breaks, start of insert
 set laststatus=2              " Always show status line
 set wildmenu                  " Option menu on the lower bar above the command line for vim options
-"set nowrap 		      " no wraping of long lines
+set nowrap 		              " no wraping of long lines
 set pastetoggle=<F2> 	      " For pasting text without indentation
 set mouse=a                   " For windows resizing
 if &term =~ '^screen'	      " Tmux ttymouse mode
@@ -104,25 +104,28 @@ filetype plugin on            " Enable filetype-specific plugins
 nmap <C-j> O<Esc>j            
 
 "-----------------------------
-" Highlight all instances of word under cursor, when idle. 
-" Useful when studying strange source code. 
-" Turn on/off with z/ (or key of your choice) 
-:map z/ :call Mosh_Auto_Highlight_Toggle()<CR> 
-
-:function! Mosh_Auto_Highlight_Cword() 
-     :exe "let @/='\\<".expand("<cword>")."\\>'" 
-:endfunction 
-
-function! Mosh_Auto_Highlight_Toggle() 
-    :if exists("#CursorHold#*") 
-    :  au! CursorHold * 
-    :  let @/='' 
-    :else 
-    :  set hlsearch
-    :  set updatetime=500 
-    :  au! CursorHold * nested call Mosh_Auto_Highlight_Cword() 
-    :endif 
-endfunction 
+" Highlight all instances of word under cursor, when idle.
+" Useful when studying strange source code.
+" Type z/ to toggle highlighting on/off.
+nnoremap z/ :if AutoHighlightToggle()<Bar>set hls<Bar>endif<CR>
+function! AutoHighlightToggle()
+  let @/ = ''
+  if exists('#auto_highlight')
+    au! auto_highlight
+    augroup! auto_highlight
+    setl updatetime=4000
+    echo 'Highlight current word: off'
+    return 0
+  else
+    augroup auto_highlight
+      au!
+      au CursorHold * let @/ = '\V\<'.escape(expand('<cword>'), '\').'\>'
+    augroup end
+    setl updatetime=500
+    echo 'Highlight current word: ON'
+    return 1
+  endif
+endfunction
 "------------------------------
 
 "Indentation
