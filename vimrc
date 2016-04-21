@@ -16,17 +16,17 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'tpope/vim-fugitive'
 " plugin from http://vim-scripts.org/vim/scripts.html
 Plugin 'L9'
-" Easymotion for easy motion on speed
+" Easymotion: for easy motion on speed
 Plugin 'easymotion/vim-easymotion'
 " Manipulate surrounding stuff ( ",',(,{,[ etc. )
 Plugin 'tpope/vim-surround'
 " Ruby extra support
 Plugin 'vim-ruby/vim-ruby'
-" Tagbar 
+" Tagbar: 
 Plugin 'majutsushi/tagbar'
 " Completion plugin of the week
 Plugin 'Valloric/YouCompleteMe'
-" RoR
+" RoR:
 Plugin 'tpope/vim-rails'
 " ctrlp
 Plugin 'ctrlpvim/ctrlp.vim'
@@ -38,15 +38,19 @@ Plugin 'fatih/vim-go'
 Plugin 'xolox/vim-misc'
 " Easytags:
 Plugin 'xolox/vim-easytags'
+" Abolish:
+Plugin 'tpope/vim-abolish'
 " Endwise:
 "Plugin 'tpope/vim-endwise' " destroys tabs?
 " Snippets Plugin: ( + dependencies )
 Plugin 'MarcWeber/vim-addon-mw-utils'
 Plugin 'tomtom/tlib_vim'
 Plugin 'garbas/vim-snipmate'
-
 " Optional:
 Plugin 'honza/vim-snippets'
+" Ansible:
+Plugin 'pearofducks/ansible-vim'
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -93,7 +97,6 @@ if &term =~ '^screen'	      " Tmux ttymouse mode
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
-
 
 syntax on                     " Enable syntax highlighting
 filetype on                   " Enable filetype detection
@@ -180,3 +183,6 @@ let g:ctrlp_max_files=0
 
 " SnipMate:
 :imap <C-J> <Plug>snipMateNextOrTrigger
+
+" YouCompleteMe:
+let g:ycm_autoclose_preview_window_after_completion = 1
