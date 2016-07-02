@@ -76,8 +76,8 @@ if has('syntax') && (&t_Co > 2)
 	syntax on
 endif
 
+colorscheme default
 set background=dark           "  Backgound is dark or light
-colorscheme elflord
 set backspace=2               "  Allow backspacing over identatiom, end-of-line, and start-of-line
 set hidden                    "  Enable working with hidden buffers
 set vb                        " no beep
@@ -163,9 +163,9 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " Ruby auto complete
-"autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
-"autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
-"autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
+autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -186,3 +186,7 @@ let g:ctrlp_max_files=0
 
 " YouCompleteMe:
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+"" I am a puts debugger!!!
+" puts the caller
+nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
