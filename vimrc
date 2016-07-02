@@ -50,6 +50,8 @@ Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 " Ansible:
 Plugin 'pearofducks/ansible-vim'
+" Airline:
+Plugin 'vim-airline/vim-airline'
 
 
 " All of your Plugins must be added before the following line
@@ -163,7 +165,7 @@ nmap <F8> :TagbarToggle<CR>
 let g:tagbar_autofocus = 1
 
 " Ruby auto complete
-autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1 
+autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
 
