@@ -22,7 +22,7 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'tpope/vim-surround'
 " Ruby extra support
 Plugin 'vim-ruby/vim-ruby'
-" Tagbar: 
+" Tagbar:
 Plugin 'majutsushi/tagbar'
 " Completion plugin of the week
 Plugin 'Valloric/YouCompleteMe'
@@ -52,6 +52,8 @@ Plugin 'honza/vim-snippets'
 Plugin 'pearofducks/ansible-vim'
 " Airline:
 Plugin 'vim-airline/vim-airline'
+" Tern
+Plugin 'ternjs/tern_for_vim'
 
 
 " All of your Plugins must be added before the following line
@@ -75,7 +77,7 @@ filetype plugin indent on    " required
 
 " have syntax highlighting in terminals which can display colours:
 if has('syntax') && (&t_Co > 2)
-	syntax on
+    syntax on
 endif
 
 colorscheme default
@@ -92,10 +94,10 @@ set cpt=.,w,b,u,t,i           " completion by all buffers, included files, etc
 set bs=eol,start,indent       " allow backspacing over autoindent, line breaks, start of insert
 set laststatus=2              " Always show status line
 set wildmenu                  " Option menu on the lower bar above the command line for vim options
-set nowrap 		              " no wraping of long lines
-set pastetoggle=<F2> 	      " For pasting text without indentation
+set nowrap                    " no wraping of long lines
+set pastetoggle=<F2>          " For pasting text without indentation
 set mouse=a                   " For windows resizing
-if &term =~ '^screen'	      " Tmux ttymouse mode
+if &term =~ '^screen'         " Tmux ttymouse mode
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
 endif
@@ -134,11 +136,13 @@ endfunction
 "------------------------------
 
 "Indentation
-set expandtab
 set tabstop=4
 set shiftwidth=4
 set softtabstop=4
+set expandtab
 set autoindent
+set list
+set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal expandtab
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal shiftwidth=4
 :autocmd FileType javascript,css,html,python,cython,vala,lua setlocal softtabstop=4
@@ -163,6 +167,14 @@ filetype plugin indent on
 nmap <F8> :TagbarToggle<CR>
 " auto focus on tagbar when it opens
 let g:tagbar_autofocus = 1
+let g:tagbar_type_css = {
+            \ 'ctagstype' : 'Css',
+    \ 'kinds'     : [
+        \ 'c:classes',
+        \ 's:selectors',
+        \ 'i:identities'
+    \ ]
+    \ }
 
 " Ruby auto complete
 autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
