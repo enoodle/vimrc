@@ -54,6 +54,8 @@ Plugin 'pearofducks/ansible-vim'
 Plugin 'vim-airline/vim-airline'
 " Tern
 Plugin 'ternjs/tern_for_vim'
+" Indent Guid:
+Plugin 'nathanaelkane/vim-indent-guides'
 
 
 " All of your Plugins must be added before the following line
@@ -204,3 +206,6 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 "" I am a puts debugger!!!
 " puts the caller
 nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
+
+" Start with indent guides
+let g:indent_guides_enable_on_vim_startup = 1
