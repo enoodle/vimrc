@@ -52,6 +52,7 @@ Plugin 'honza/vim-snippets'
 Plugin 'pearofducks/ansible-vim'
 " Airline:
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 " Tern
 Plugin 'ternjs/tern_for_vim'
 " Indent Guid:
@@ -110,7 +111,7 @@ filetype indent on            " Enable filetype-specific indenting
 filetype plugin on            " Enable filetype-specific plugins
 
 " Ctrl-j to take current line one line lower
-nmap <C-j> O<Esc>j            
+nmap <C-j> O<Esc>j
 
 "-----------------------------
 " Highlight all instances of word under cursor, when idle.
@@ -188,7 +189,7 @@ nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " FuzzyFinder to find files TODO: make folders be deleted immidiatly
-nmap <F3> :FufFileWithCurrentBufferDir<CR> 
+nmap <F3> :FufFileWithCurrentBufferDir<CR>
 
 " easytags
 :set tags=./tags,.tags;
@@ -209,3 +210,18 @@ nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Start with indent guides
 let g:indent_guides_enable_on_vim_startup = 1
+
+" Airline:
+let g:airline#extensions#whitespace#enabled = 0
+let g:airline_powerline_fonts = 1
+let g:airline_theme='cool'
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+" unicode symbols
+let g:airline_left_sep = '▶'
+let g:airline_left_alt_sep = '»'
+let g:airline_right_sep = '◀'
+let g:airline_right_alt_sep = '«'
+let g:airline_symbols.branch = '⎇'
