@@ -57,6 +57,12 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ternjs/tern_for_vim'
 " Indent Guid:
 Plugin 'nathanaelkane/vim-indent-guides'
+" Syntastic: Auto syntax checking
+Plugin 'scrooloose/syntastic'
+" flake8: syntastic support for flake8
+Plugin 'nvie/vim-flake8'
+" SemanticHighligh:
+Plugin 'jaxbot/semantic-highlight.vim'
 
 
 " All of your Plugins must be added before the following line
@@ -146,13 +152,13 @@ set expandtab
 set autoindent
 set list
 set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
-:autocmd FileType javascript,css,html,python,cython,vala,lua setlocal expandtab
-:autocmd FileType javascript,css,html,python,cython,vala,lua setlocal shiftwidth=4
-:autocmd FileType javascript,css,html,python,cython,vala,lua setlocal softtabstop=4
+:autocmd FileType python,cython,vala,lua setlocal expandtab
+:autocmd FileType python,cython,vala,lua setlocal shiftwidth=4
+:autocmd FileType python,cython,vala,lua setlocal softtabstop=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
-:autocmd FileType ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 filetype plugin indent on
+:autocmd FileType javascript,css,html,ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 "" wildignore
 ""python
@@ -171,7 +177,7 @@ nmap <F8> :TagbarToggle<CR>
 " auto focus on tagbar when it opens
 let g:tagbar_autofocus = 1
 let g:tagbar_type_css = {
-            \ 'ctagstype' : 'Css',
+    \ 'ctagstype' : 'Css',
     \ 'kinds'     : [
         \ 'c:classes',
         \ 's:selectors',
@@ -225,3 +231,18 @@ let g:airline_left_alt_sep = '»'
 let g:airline_right_sep = '◀'
 let g:airline_right_alt_sep = '«'
 let g:airline_symbols.branch = '⎇'
+
+" Python:
+
+" python with virtualenv support
+py << EOF
+import os
+import sys
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
+
+let python_highlight_all=1
+syntax on
