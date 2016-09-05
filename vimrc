@@ -145,20 +145,18 @@ endfunction
 "------------------------------
 
 "Indentation
-set tabstop=4
-set shiftwidth=4
-set softtabstop=4
+"set tabstop=4
+"set shiftwidth=4
+"set softtabstop=4
 set expandtab
 set autoindent
 set list
 set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
-:autocmd FileType python,cython,vala,lua setlocal expandtab
-:autocmd FileType python,cython,vala,lua setlocal shiftwidth=4
-:autocmd FileType python,cython,vala,lua setlocal softtabstop=4
+:autocmd FileType javascript,css,html,ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+:autocmd FileType python,cython,vala,lua setlocal expandtab sts=4 sw=4 ts=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
 filetype plugin indent on
-:autocmd FileType javascript,css,html,ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 "" wildignore
 ""python
@@ -246,3 +244,11 @@ EOF
 
 let python_highlight_all=1
 syntax on
+
+
+" SyntaxHighligh:
+"let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
+"let g:semanticTermColors = [1,2,3,5,6,7,10,11,12,13,]
+"let g:semanticTermColors = [28,1,2,3,5,6,7,9,10,34,13,14,15,125,124,57,153,39]
+let g:semanticTermColors = [1,2,3,4,5,6,7,9,10,12,14,15,34,125,124,153,109,]
+:nnoremap <leader>hs :SemanticHighlightToggle<CR>
