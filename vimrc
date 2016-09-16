@@ -89,6 +89,7 @@ if has('syntax') && (&t_Co > 2)
     syntax on
 endif
 
+set t_Co=256
 colorscheme default
 set background=dark           "  Backgound is dark or light
 set backspace=2               "  Allow backspacing over identatiom, end-of-line, and start-of-line
