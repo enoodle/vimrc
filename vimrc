@@ -204,7 +204,7 @@ nmap <F3> :FufFileWithCurrentBufferDir<CR>
 let g:ctrlp_max_files=0
 
 " SnipMate:
-:imap <C-J> <Plug>snipMateNextOrTrigger
+:imap ** <esc>a<Plug>snipMateNextOrTrigger
 
 " YouCompleteMe:
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -215,6 +215,8 @@ nnoremap <leader>wtf oputs "#" * 90<c-m>puts caller<c-m>puts "#" * 90<esc>
 
 " Start with indent guides
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 30
+
 
 " Airline:
 let g:airline#extensions#whitespace#enabled = 0
