@@ -63,6 +63,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'nvie/vim-flake8'
 " SemanticHighligh:
 Plugin 'jaxbot/semantic-highlight.vim'
+" Bufexplorer:
+Plugin 'jlanzarotta/bufexplorer'
 
 
 " All of your Plugins must be added before the following line
