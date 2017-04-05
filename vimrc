@@ -190,6 +190,9 @@ let g:tagbar_type_css = {
 " autocmd FileType ruby,eruby let g:rubycomplete_buffer_loading = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_classes_in_global = 1
 " autocmd FileType ruby,eruby let g:rubycomplete_rails = 1
+" Ruby use old RE generator which is much better
+" details: http://stackoverflow.com/questions/16902317/vim-slow-with-ruby-syntax-highlighting
+:autocmd FileType ruby setlocal re=1
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
