@@ -61,10 +61,12 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'scrooloose/syntastic'
 " flake8: syntastic support for flake8
 Plugin 'nvie/vim-flake8'
-" SemanticHighligh:
+" SemanticHighlight:
 Plugin 'jaxbot/semantic-highlight.vim'
 " Bufexplorer:
 Plugin 'jlanzarotta/bufexplorer'
+" Colorschemes:
+Plugin 'flazz/vim-colorschemes'
 
 
 " All of your Plugins must be added before the following line
@@ -159,6 +161,7 @@ set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars map
 :autocmd FileType python,cython,vala,lua setlocal expandtab sts=4 sw=4 ts=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
+:autocmd FileType python let python_highlight_all=1
 filetype plugin indent on
 
 "" wildignore
@@ -249,10 +252,6 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     execfile(activate_this, dict(__file__=activate_this))
 EOF
-
-let python_highlight_all=1
-syntax on
-
 
 " SyntaxHighligh:
 "let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
