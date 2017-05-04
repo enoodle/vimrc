@@ -4,7 +4,7 @@
 git clone git@github.com:enoodle/vimrc
 ```
 
-Add 'source ~/vimrc/vimrc' to your "~/.vimrc" file.
+Add `source ~/vimrc/vimrc` to your "~/.vimrc" file.
 
 ## Vundle
 Next install vundle and download all plugins:
