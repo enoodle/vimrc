@@ -259,3 +259,7 @@ EOF
 "let g:semanticTermColors = [28,1,2,3,5,6,7,9,10,34,13,14,15,125,124,57,153,39]
 let g:semanticTermColors = [1,2,3,4,5,6,7,9,10,12,14,15,34,125,124,153,109,]
 :nnoremap <leader>hs :SemanticHighlightToggle<CR>
+
+
+let g:xml_syntax_folding=1
+au FileType xml setlocal foldmethod=syntax
