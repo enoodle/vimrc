@@ -67,6 +67,10 @@ Plugin 'jaxbot/semantic-highlight.vim'
 Plugin 'jlanzarotta/bufexplorer'
 " Colorschemes:
 Plugin 'flazz/vim-colorschemes'
+" IndentWise
+Plugin 'jeetsukumaran/vim-indentwise'
+" javascript highlights
+Plugin 'jelera/vim-javascript-syntax'
 
 
 " All of your Plugins must be added before the following line
@@ -263,3 +267,5 @@ let g:semanticTermColors = [1,2,3,4,5,6,7,9,10,12,14,15,34,125,124,153,109,]
 
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
+let g:yml_syntax_folding=1
+au FileType yml setlocal foldmethod=syntax
