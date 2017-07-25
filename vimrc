@@ -180,6 +180,9 @@ filetype plugin indent on
 ""VCS
 :set wildignore+=*/.git/*,*/.hg/*,*/.svn/*
 
+" Open files from last used position
+:au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " Tagbar
 nmap <F8> :TagbarToggle<CR>
 " auto focus on tagbar when it opens
