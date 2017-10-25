@@ -28,16 +28,17 @@ Plugin 'majutsushi/tagbar'
 Plugin 'Valloric/YouCompleteMe'
 " RoR:
 Plugin 'tpope/vim-rails'
-" ctrlp
-Plugin 'ctrlpvim/ctrlp.vim'
 " FuzzyFinder:
 Plugin 'vim-scripts/FuzzyFinder'
+" Fzf:
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 " GO:
 Plugin 'fatih/vim-go'
-" vim-misc for easytags
-Plugin 'xolox/vim-misc'
-" Easytags:
-Plugin 'xolox/vim-easytags'
+"" vim-misc for easytags
+"Plugin 'xolox/vim-misc'
+"" Easytags:
+"Plugin 'xolox/vim-easytags'
 " Abolish:
 Plugin 'tpope/vim-abolish'
 " Endwise:
@@ -208,15 +209,12 @@ let g:tagbar_type_css = {
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
-" FuzzyFinder to find files TODO: make folders be deleted immidiatly
+" FuzzyFinder to find files in current directory
 nmap <F3> :FufFileWithCurrentBufferDir<CR>
 
 " easytags
 :set tags=./tags,.tags;
-:let g:easytags_dynamic_files = 1
-
-" ctrlp:
-let g:ctrlp_max_files=0
+":let g:easytags_dynamic_files = 1
 
 " SnipMate:
 :imap ** <esc>a<Plug>snipMateNextOrTrigger
@@ -272,3 +270,24 @@ let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 let g:yml_syntax_folding=1
 au FileType yml setlocal foldmethod=syntax
+
+" Fzf:
+" ctrlp replacement
+nmap <C-p> :FZF<CR>
+nmap ; :Buffers<CR>
+nmap <Leader>t :Tags<CR>
+" Customize fzf colors to match your color scheme
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'border':  ['fg', 'Ignore'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
