@@ -58,10 +58,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'ternjs/tern_for_vim'
 " Indent Guid:
 Plugin 'nathanaelkane/vim-indent-guides'
-" Syntastic: Auto syntax checking
-Plugin 'scrooloose/syntastic'
-" flake8: syntastic support for flake8
-Plugin 'nvie/vim-flake8'
 " SemanticHighlight:
 Plugin 'jaxbot/semantic-highlight.vim'
 " Bufexplorer:
@@ -72,6 +68,10 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'jeetsukumaran/vim-indentwise'
 " javascript highlights
 Plugin 'jelera/vim-javascript-syntax'
+" Ack: (ag)
+Plugin 'mileszs/ack.vim'
+" ALE:
+Plugin 'w0rp/ale'
 
 
 " All of your Plugins must be added before the following line
@@ -291,3 +291,10 @@ let g:fzf_colors =
   \ 'marker':  ['fg', 'Keyword'],
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
+
+
+" Ack: (ag)
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+nmap <C-k> :Ack! "\b<cword>\b"<CR>
