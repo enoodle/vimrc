@@ -1,99 +1,78 @@
 set nocompatible              " be iMproved, required
-filetype off                  " required
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+" Vim-Plug installation insurance:
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/bundle')
 
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
-Plugin 'tpope/vim-fugitive'
+Plug 'tpope/vim-fugitive'
 " gitgutter
-Plugin 'airblade/vim-gitgutter'
+Plug 'airblade/vim-gitgutter'
 " plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'L9'
+Plug 'vim-scripts/L9'
 " Easymotion: for easy motion on speed
-Plugin 'easymotion/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 " Manipulate surrounding stuff ( ",',(,{,[ etc. )
-Plugin 'tpope/vim-surround'
+Plug 'tpope/vim-surround'
 " Ruby extra support
-Plugin 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby'
 " Tagbar:
-Plugin 'majutsushi/tagbar'
+Plug 'majutsushi/tagbar'
 " Completion plugin of the week
-Plugin 'Valloric/YouCompleteMe'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer'}
 " RoR:
-Plugin 'tpope/vim-rails'
+Plug 'tpope/vim-rails'
 " FuzzyFinder:
-Plugin 'vim-scripts/FuzzyFinder'
+Plug 'vim-scripts/FuzzyFinder'
 " Fzf:
-Plugin 'junegunn/fzf'
-Plugin 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': './install --all'}
+Plug 'junegunn/fzf.vim'
 " GO:
-Plugin 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
 "" vim-misc for easytags
 "Plugin 'xolox/vim-misc'
 "" Easytags:
 "Plugin 'xolox/vim-easytags'
 " Abolish:
-Plugin 'tpope/vim-abolish'
+Plug 'tpope/vim-abolish'
 " Endwise:
 "Plugin 'tpope/vim-endwise' " destroys tabs?
 " Snippets Plugin: ( + dependencies )
-Plugin 'MarcWeber/vim-addon-mw-utils'
-Plugin 'tomtom/tlib_vim'
-Plugin 'garbas/vim-snipmate'
+Plug 'MarcWeber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
+Plug 'garbas/vim-snipmate'
 " Optional:
-Plugin 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 " Ansible:
-Plugin 'pearofducks/ansible-vim'
+Plug 'pearofducks/ansible-vim'
 " Airline:
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Tern
-Plugin 'ternjs/tern_for_vim'
+Plug 'ternjs/tern_for_vim'
 " Indent Guid:
-Plugin 'nathanaelkane/vim-indent-guides'
+Plug 'nathanaelkane/vim-indent-guides'
 " SemanticHighlight:
-Plugin 'jaxbot/semantic-highlight.vim'
+Plug 'jaxbot/semantic-highlight.vim'
 " Bufexplorer:
-Plugin 'jlanzarotta/bufexplorer'
+Plug 'jlanzarotta/bufexplorer'
 " Colorschemes:
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 " IndentWise
-Plugin 'jeetsukumaran/vim-indentwise'
+Plug 'jeetsukumaran/vim-indentwise'
 " javascript highlights
-Plugin 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax'
 " Ack: (ag)
-Plugin 'mileszs/ack.vim'
+Plug 'mileszs/ack.vim'
 " ALE:
-Plugin 'w0rp/ale'
+Plug 'w0rp/ale'
 
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just
-" :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to
-" auto-approve removal
-"
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
+call plug#end()
 
 " have syntax highlighting in terminals which can display colours:
 if has('syntax') && (&t_Co > 2)
