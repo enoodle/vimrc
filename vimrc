@@ -279,3 +279,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 nmap <C-k> :Ack! "\b<cword>\b"<CR>
+
+" Spell check git commit messages
+autocmd FileType gitcommit setlocal spell
