@@ -14,6 +14,7 @@ $ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 Then open vim and run: `:PluginInstall` . This might take a few minutes
 
 ## YouCompleteMe
+Depends on cmake, c++ compiler (gcc-c++), python-devel, go, node
 ```
 cd ~/.vim/bundle/YouCompleteMe
 ./install.py
