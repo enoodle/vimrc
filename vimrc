@@ -273,6 +273,8 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
 
 " Ack: (ag)
 if executable('ag')
