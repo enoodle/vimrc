@@ -143,7 +143,7 @@ set expandtab
 set autoindent
 set list
 set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
-:autocmd FileType javascript,css,html,ruby setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+:autocmd FileType javascript,css,html,ruby,yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 :autocmd FileType python,cython,vala,lua setlocal expandtab sts=4 sw=4 ts=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
