@@ -9,6 +9,8 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
+" vim-virtualenv
+Plug 'plytophogy/vim-virtualenv'
 " plugin on GitHub repo
 Plug 'tpope/vim-fugitive'
 " gitgutter
@@ -24,7 +26,7 @@ Plug 'vim-ruby/vim-ruby'
 " Tagbar:
 Plug 'majutsushi/tagbar'
 " Completion plugin of the week
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --gocode-completer --tern-completer'}
+Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --gocode-completer --tern-completer'}
 " RoR:
 Plug 'tpope/vim-rails'
 " FuzzyFinder:
@@ -54,7 +56,7 @@ Plug 'pearofducks/ansible-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Tern
-Plug 'ternjs/tern_for_vim'
+" Plug 'ternjs/tern_for_vim'
 " Indent Guid:
 Plug 'nathanaelkane/vim-indent-guides'
 " SemanticHighlight:
@@ -109,6 +111,8 @@ filetype plugin on            " Enable filetype-specific plugins
 
 " Ctrl-j to take current line one line lower
 nmap <C-j> O<Esc>j
+nnoremap <M-j> :m+<CR>
+nnoremap <M-k> :m .-2<CR>
 
 "-----------------------------
 " Highlight all instances of word under cursor, when idle.
@@ -227,17 +231,6 @@ let g:airline_right_sep = '◀'
 let g:airline_right_alt_sep = '«'
 let g:airline_symbols.branch = '⎇'
 
-" Python:
-
-" python with virtualenv support
-py << EOF
-import os
-import sys
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
 
 " SyntaxHighligh:
 "let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
@@ -284,3 +277,11 @@ nmap <C-k> :Ack! "\b<cword>\b"<CR>
 
 " Spell check git commit messages
 autocmd FileType gitcommit setlocal spell
+
+" vim-virtualenv
+" NOTICE: pylint, pyflake has to come from the venv as well
+let g:virtualenv_auto_activate = 1
+
+"ALE for eslint
+let g:ale_linters = {'js': ['stylelint', 'eslint']}
+let g:ale_linter_aliases = {'js': 'css'}
