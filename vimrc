@@ -75,6 +75,9 @@ Plug 'mileszs/ack.vim'
 Plug 'w0rp/ale'
 " NerdCommenter
 Plug 'scrooloose/nerdcommenter'
+" illuminate
+" TODO get move to upstream
+Plug 'enoodle/vim-illuminate', { 'branch': 'addToggleIllumination' }
 
 call plug#end()
 
@@ -287,3 +290,7 @@ let g:virtualenv_auto_activate = 1
 "ALE for eslint
 let g:ale_linters = {'js': ['stylelint', 'eslint']}
 let g:ale_linter_aliases = {'js': 'css'}
+
+" vim-illuminate
+hi link illuminatedWord Visual
+map zt :IlluminationToggle<CR>
