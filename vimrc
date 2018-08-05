@@ -207,7 +207,7 @@ nmap <F3> :FufFileWithCurrentBufferDir<CR>
 ":let g:easytags_dynamic_files = 1
 
 " SnipMate:
-:imap ** <esc>a<Plug>snipMateNextOrTrigger
+:imap && <esc>a<Plug>snipMateNextOrTrigger
 
 " YouCompleteMe:
 let g:ycm_autoclose_preview_window_after_completion = 1
