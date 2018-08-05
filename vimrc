@@ -76,8 +76,7 @@ Plug 'w0rp/ale'
 " NerdCommenter
 Plug 'scrooloose/nerdcommenter'
 " illuminate
-" TODO get move to upstream
-Plug 'enoodle/vim-illuminate', { 'branch': 'addToggleIllumination' }
+Plug 'RRethy/vim-illuminate'
 
 call plug#end()
 
