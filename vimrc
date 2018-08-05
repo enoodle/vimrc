@@ -73,10 +73,10 @@ Plug 'jelera/vim-javascript-syntax'
 Plug 'mileszs/ack.vim'
 " ALE:
 Plug 'w0rp/ale'
-" NerdCommenter
-Plug 'scrooloose/nerdcommenter'
 " illuminate
 Plug 'RRethy/vim-illuminate'
+" vim-commentary
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 
