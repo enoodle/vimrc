@@ -293,3 +293,8 @@ let g:ale_linter_aliases = {'js': 'css'}
 " vim-illuminate
 hi link illuminatedWord Visual
 map zt :IlluminationToggle<CR>
+
+" gitgutter colors
+highlight GitGutterAdd    guifg=#009900 guibg=#073642 ctermfg=2 ctermbg=0
+highlight GitGutterChange guifg=#bbbb00 guibg=#073642 ctermfg=3 ctermbg=0
+highlight GitGutterDelete guifg=#ff2222 guibg=#073642 ctermfg=1 ctermbg=0
