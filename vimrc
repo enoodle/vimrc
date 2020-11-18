@@ -68,7 +68,7 @@ Plug 'flazz/vim-colorschemes'
 " IndentWise
 Plug 'jeetsukumaran/vim-indentwise'
 " javascript highlights
-Plug 'jelera/vim-javascript-syntax'
+" Plug 'jelera/vim-javascript-syntax'
 " Ack: (ag)
 Plug 'mileszs/ack.vim'
 " ALE:
@@ -77,6 +77,10 @@ Plug 'w0rp/ale'
 Plug 'RRethy/vim-illuminate'
 " vim-commentary
 Plug 'tpope/vim-commentary'
+" jsdoc
+Plug 'heavenshell/vim-jsdoc'
+" polyglot
+Plug 'sheerun/vim-polyglot'
 
 call plug#end()
 
@@ -151,7 +155,7 @@ set expandtab
 set autoindent
 set list
 set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
-:autocmd FileType javascript,css,html,ruby,yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+:autocmd FileType javascript.jsx,javascript,css,html,ruby,yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 :autocmd FileType python,cython,vala,lua setlocal expandtab sts=4 sw=4 ts=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
@@ -287,8 +291,16 @@ autocmd FileType gitcommit setlocal spell
 let g:virtualenv_auto_activate = 1
 
 "ALE for eslint
-let g:ale_linters = {'js': ['stylelint', 'eslint']}
+let g:ale_linters = {'js': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint']}
 let g:ale_linter_aliases = {'js': 'css'}
+let g:ale_echo_msg_format = '%linter%: %s'
+  let g:ale_fixers = {
+  \   'javascript': [
+  \       'eslint',
+  \   ],
+  \}
+nmap <F9> <Plug>(ale_fix)
 
 " vim-illuminate
 hi link illuminatedWord Visual
