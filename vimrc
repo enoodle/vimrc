@@ -45,9 +45,10 @@ Plug 'tpope/vim-abolish'
 " Endwise:
 "Plugin 'tpope/vim-endwise' " destroys tabs?
 " Snippets Plugin: ( + dependencies )
-Plug 'MarcWeber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug 'garbas/vim-snipmate'
+" Plug 'MarcWeber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
+" Plug 'garbas/vim-snipmate'
+Plug 'SirVer/ultisnips'
 " Optional:
 Plug 'honza/vim-snippets'
 " Ansible:
@@ -81,6 +82,10 @@ Plug 'tpope/vim-commentary'
 Plug 'heavenshell/vim-jsdoc'
 " polyglot
 Plug 'sheerun/vim-polyglot'
+" vimux
+Plug 'preservim/vimux'
+" vim-delve
+Plug 'sebdah/vim-delve'
 
 call plug#end()
 
@@ -99,6 +104,8 @@ set ic                        " ingnore case in search
 set scs                       " case sensitive when upper case search pattern
 set incsearch                 " while typing search for pattern
 set scroll=0                  " set Pg Up/Dn to half screen size
+set so=0                      " set scrolloffset to 0 'scrolloff'
+set sidescrolloff=10          " set horizontal scroll offset
 set ru                        " cursor position
 set cpt=.,w,b,u,t,i           " completion by all buffers, included files, etc
 set bs=eol,start,indent       " allow backspacing over autoindent, line breaks, start of insert
@@ -155,7 +162,7 @@ set expandtab
 set autoindent
 set list
 set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
-:autocmd FileType javascript.jsx,javascript,css,html,ruby,yaml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+:autocmd FileType javascript.jsx,javascript,css,html,ruby,yaml,vue setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 :autocmd FileType python,cython,vala,lua setlocal expandtab sts=4 sw=4 ts=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
@@ -209,8 +216,11 @@ nmap <F3> :FufFileWithCurrentBufferDir<CR>
 :set tags=./tags,.tags;
 ":let g:easytags_dynamic_files = 1
 
-" SnipMate:
-:imap && <esc>a<Plug>snipMateNextOrTrigger
+" " SnipMate:
+" :imap && <esc>a<Plug>snipMateNextOrTrigger
+" let g:snipMate = { 'snippet_version' : 1 }
+" UltiSnips:
+let g:UltiSnipsExpandTrigger="*&"
 
 " YouCompleteMe:
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -267,7 +277,7 @@ let g:fzf_colors =
   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
   \ 'hl+':     ['fg', 'Statement'],
   \ 'info':    ['fg', 'PreProc'],
-  \ 'border':  ['fg', 'Ignore'],
+  \ 'border':  ['fg', 'LineNr'],
   \ 'prompt':  ['fg', 'Conditional'],
   \ 'pointer': ['fg', 'Exception'],
   \ 'marker':  ['fg', 'Keyword'],
