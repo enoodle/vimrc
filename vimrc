@@ -68,8 +68,10 @@ Plug 'jlanzarotta/bufexplorer'
 Plug 'flazz/vim-colorschemes'
 " IndentWise
 Plug 'jeetsukumaran/vim-indentwise'
-" javascript highlights
-" Plug 'jelera/vim-javascript-syntax'
+" javascript support
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
 " Ack: (ag)
 Plug 'mileszs/ack.vim'
 " ALE:
@@ -302,14 +304,10 @@ let g:virtualenv_auto_activate = 1
 
 "ALE for eslint
 let g:ale_linters = {'js': ['eslint']}
-let g:ale_linters = {'javascript': ['eslint']}
+let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['tsserver', 'tslint', 'eslint']}
 let g:ale_linter_aliases = {'js': 'css'}
 let g:ale_echo_msg_format = '%linter%: %s'
-  let g:ale_fixers = {
-  \   'javascript': [
-  \       'eslint',
-  \   ],
-  \}
+let g:ale_fixers = {'javascript': ['eslint']}
 nmap <F9> <Plug>(ale_fix)
 
 " vim-illuminate
