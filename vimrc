@@ -26,7 +26,7 @@ Plug 'vim-ruby/vim-ruby'
 " Tagbar:
 Plug 'majutsushi/tagbar'
 " Completion plugin of the week
-Plug 'Valloric/YouCompleteMe', { 'do': 'python3 ./install.py --gocode-completer --tern-completer'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh coc-vetur'}
 " RoR:
 Plug 'tpope/vim-rails'
 " FuzzyFinder:
@@ -74,8 +74,6 @@ Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
 " Ack: (ag)
 Plug 'mileszs/ack.vim'
-" ALE:
-Plug 'w0rp/ale'
 " illuminate
 Plug 'RRethy/vim-illuminate'
 " vim-commentary
@@ -302,14 +300,6 @@ autocmd FileType gitcommit setlocal spell
 " NOTICE: pylint, pyflake has to come from the venv as well
 let g:virtualenv_auto_activate = 1
 
-"ALE for eslint
-let g:ale_linters = {'js': ['eslint']}
-let g:ale_linters = {'javascript': ['eslint'], 'typescript': ['tsserver', 'tslint', 'eslint']}
-let g:ale_linter_aliases = {'js': 'css'}
-let g:ale_echo_msg_format = '%linter%: %s'
-let g:ale_fixers = {'javascript': ['eslint']}
-nmap <F9> <Plug>(ale_fix)
-
 " vim-illuminate
 hi link illuminatedWord Visual
 map zt :IlluminationToggle<CR>
@@ -318,3 +308,6 @@ map zt :IlluminationToggle<CR>
 highlight GitGutterAdd    guifg=#009900 guibg=#073642 ctermfg=2 ctermbg=0
 highlight GitGutterChange guifg=#bbbb00 guibg=#073642 ctermfg=3 ctermbg=0
 highlight GitGutterDelete guifg=#ff2222 guibg=#073642 ctermfg=1 ctermbg=0
+
+" Coc configuration:
+source $HOME/vimrc/coc_conf.vim
