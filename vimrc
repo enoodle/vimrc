@@ -26,7 +26,7 @@ Plug 'vim-ruby/vim-ruby'
 " Tagbar:
 Plug 'majutsushi/tagbar'
 " Completion plugin of the week
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh coc-vetur'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh coc-vetur coc-snippets'}
 " RoR:
 Plug 'tpope/vim-rails'
 " FuzzyFinder:
