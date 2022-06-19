@@ -86,6 +86,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/vimux'
 " vim-delve
 Plug 'sebdah/vim-delve'
+" copilot
+Plug 'github/copilot.vim'
 
 call plug#end()
 
