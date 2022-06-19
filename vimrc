@@ -1,13 +1,13 @@
 set nocompatible              " be iMproved, required
 
 " Vim-Plug installation insurance:
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.config/nvim/bundle')
 
 " vim-virtualenv
 Plug 'plytophogy/vim-virtualenv'
@@ -162,7 +162,7 @@ set expandtab
 set autoindent
 set list
 set listchars=tab:✗\ ,trail:✗,extends:»,precedes:« " Unprintable chars mapping
-:autocmd FileType javascript.jsx,javascript,css,html,ruby,yaml,vue setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+:autocmd FileType javascript.jsx,javascript,css,html,ruby,yaml,vue,xml setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 :autocmd FileType python,cython,vala,lua setlocal expandtab sts=4 sw=4 ts=4
 :autocmd FileType * setlocal autoindent
 :autocmd FileType vala setlocal cindent
