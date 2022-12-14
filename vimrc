@@ -26,7 +26,7 @@ Plug 'vim-ruby/vim-ruby'
 " Tagbar:
 Plug 'majutsushi/tagbar'
 " Completion plugin of the week
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh coc-vetur coc-snippets'}
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh @yaegassy/coc-volar coc-snippets'}
 " RoR:
 Plug 'tpope/vim-rails'
 " FuzzyFinder:
@@ -86,8 +86,8 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/vimux'
 " vim-delve
 Plug 'sebdah/vim-delve'
-" copilot
-Plug 'github/copilot.vim'
+" " copilot
+" Plug 'github/copilot.vim'
 
 call plug#end()
 
