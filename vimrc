@@ -93,6 +93,13 @@ Plug 'kamykn/popup-menu.nvim'
 " " copilot
 " Plug 'github/copilot.vim'
 
+" Tabnine
+" Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
+
+" codeium.ai
+Plug 'Exafunction/codeium.vim'
+
+
 call plug#end()
 
 " have syntax highlighting in terminals which can display colours:
