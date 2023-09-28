@@ -86,6 +86,10 @@ Plug 'sheerun/vim-polyglot'
 Plug 'preservim/vimux'
 " vim-delve
 Plug 'sebdah/vim-delve'
+" spelunker
+Plug 'kamykn/spelunker.vim'
+Plug 'kamykn/popup-menu.nvim'
+
 " " copilot
 " Plug 'github/copilot.vim'
 
@@ -313,3 +317,5 @@ highlight GitGutterDelete guifg=#ff2222 guibg=#073642 ctermfg=1 ctermbg=0
 
 " Coc configuration:
 source $HOME/vimrc/coc_conf.vim
+
+let g:spelunker_highlight_type = 2
