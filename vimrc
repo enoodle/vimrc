@@ -36,6 +36,7 @@ Plug 'junegunn/fzf', { 'do': './install --all'}
 Plug 'junegunn/fzf.vim'
 " GO:
 Plug 'fatih/vim-go', { 'do': ':GoInstallBinaries' }
+Plug 'charlespascoe/vim-go-syntax'
 "" vim-misc for easytags
 "Plugin 'xolox/vim-misc'
 "" Easytags:
@@ -60,8 +61,6 @@ Plug 'vim-airline/vim-airline-themes'
 " Plug 'ternjs/tern_for_vim'
 " Indent Guid:
 Plug 'nathanaelkane/vim-indent-guides'
-" SemanticHighlight:
-Plug 'jaxbot/semantic-highlight.vim'
 " Bufexplorer:
 Plug 'jlanzarotta/bufexplorer'
 " Colorschemes:
@@ -91,13 +90,19 @@ Plug 'kamykn/spelunker.vim'
 Plug 'kamykn/popup-menu.nvim'
 
 " " copilot
-" Plug 'github/copilot.vim'
+Plug 'github/copilot.vim'
+Plug 'zbirenbaum/copilot.lua'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'CopilotC-Nvim/CopilotChat.nvim', { 'branch': 'canary' }
 
 " Tabnine
 " Plug 'codota/tabnine-nvim', { 'do': './dl_binaries.sh' }
 
 " codeium.ai
-Plug 'Exafunction/codeium.vim'
+" Plug 'Exafunction/codeium.vim'
+
+" llm.nvim
+" Plug 'huggingface/llm.nvim'
 
 
 call plug#end()
@@ -108,7 +113,6 @@ if has('syntax') && (&t_Co > 2)
 endif
 
 set t_Co=256
-colorscheme default
 set background=dark           "  Backgound is dark or light
 set backspace=2               "  Allow backspacing over identatiom, end-of-line, and start-of-line
 set hidden                    "  Enable working with hidden buffers
@@ -127,6 +131,7 @@ set wildmenu                  " Option menu on the lower bar above the command l
 set nowrap                    " no wraping of long lines
 set pastetoggle=<F2>          " For pasting text without indentation
 set mouse=a                   " For windows resizing
+colorscheme neodark           " set colorscheme
 if &term =~ '^screen'         " Tmux ttymouse mode
     " tmux knows the extended mouse mode
     set ttymouse=xterm2
@@ -262,15 +267,6 @@ let g:airline_right_sep = '◀'
 let g:airline_right_alt_sep = '«'
 let g:airline_symbols.branch = '⎇'
 
-
-" SyntaxHighligh:
-"let g:semanticTermColors = [28,1,2,3,4,5,6,7,25,9,10,34,12,13,14,15,16,125,124,19]
-"let g:semanticTermColors = [1,2,3,5,6,7,10,11,12,13,]
-"let g:semanticTermColors = [28,1,2,3,5,6,7,9,10,34,13,14,15,125,124,57,153,39]
-let g:semanticTermColors = [1,2,3,4,5,6,7,9,10,12,14,15,34,125,124,153,109,]
-:nnoremap <leader>hs :SemanticHighlightToggle<CR>
-
-
 let g:xml_syntax_folding=1
 au FileType xml setlocal foldmethod=syntax
 let g:yml_syntax_folding=1
@@ -315,7 +311,7 @@ let g:virtualenv_auto_activate = 1
 
 " vim-illuminate
 hi link illuminatedWord Visual
-map zt :IlluminationToggle<CR>
+map zt :IlluminateToggle<CR>
 
 " gitgutter colors
 highlight GitGutterAdd    guifg=#009900 guibg=#073642 ctermfg=2 ctermbg=0
@@ -326,3 +322,9 @@ highlight GitGutterDelete guifg=#ff2222 guibg=#073642 ctermfg=1 ctermbg=0
 source $HOME/vimrc/coc_conf.vim
 
 let g:spelunker_highlight_type = 2
+
+" golang configuration
+let g:go_fmt_command = "gofmt"
+let g:go_fmt_options = {
+  \ 'gofmt': '-s',
+  \ }
