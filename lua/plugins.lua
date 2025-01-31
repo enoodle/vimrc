@@ -48,4 +48,11 @@ return {
 			'nvim-lualine/lualine.nvim',
 			dependencies = { 'nvim-tree/nvim-web-devicons' }
 		},
+
+        -- DAP
+        'mfussenegger/nvim-dap',
+        { 'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'} },
+        { 'theHamsta/nvim-dap-virtual-text', dependencies = {'mfussenegger/nvim-dap',} },
+        { 'leoluz/nvim-dap-go', dependencies = {'mfussenegger/nvim-dap',} },
+        { 'mfussenegger/nvim-dap-python', dependencies = {'mfussenegger/nvim-dap',} },
 }
