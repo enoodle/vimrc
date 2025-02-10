@@ -202,6 +202,9 @@ vim.api.nvim_set_hl(0, 'GitGutterAdd', { fg='#009900', bg='#073642', ctermfg=2, 
 vim.api.nvim_set_hl(0, 'GitGutterChange', { fg='#bbbb00', bg='#073642', ctermfg=3, ctermbg=0 })
 vim.api.nvim_set_hl(0, 'GitGutterDelete', { fg='#ff2222', bg='#073642', ctermfg=1, ctermbg=0 })
 
+-- Coc Menu colors fix
+vim.api.nvim_set_hl(0, 'CocMenuSel', { fg='#000000', bg='#C70039', ctermfg=1, ctermbg=0 })
+
 vim.g.spelunker_highlight_type = 2
 
 -- golang configuration
@@ -210,7 +213,13 @@ vim.g.go_fmt_options = {
   gofmt = '-s',
 }
 
-require('lualine').setup()
+require('lualine').setup({
+    sections = {
+        lualine_c = {
+            { 'filename', path = 1 }
+        }
+    }
+})
 
 -- DAP
 require('dapui').setup()
