@@ -10,11 +10,6 @@ return {
     -- Completion plugin of the week
     {'neoclide/coc.nvim', branch = 'release', build = ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh @yaegassy/coc-volar coc-snippets'},
 
-    {'vim-scripts/FuzzyFinder', dependencies = { 'vim-scripts/L9' }},
-    -- Fzf:
-    { 'junegunn/fzf', run= 'fzf#install()'},
-    'junegunn/fzf.vim',
-
     -- GO:
     { 'fatih/vim-go', build = 'GoInstallBinaries' },
     -- 'charlespascoe/vim-go-syntax',
@@ -45,6 +40,35 @@ return {
     'kamykn/popup-menu.nvim',
 
     {
+        "folke/snacks.nvim",
+        priority = 1000,
+        lazy = false,
+        ---@type snacks.Config
+        opts = {
+            bigfile = { enabled = true },
+            dashboard = { enabled = true },
+            explorer = { enabled = true },
+            indent = { enabled = true },
+            input = { enabled = true },
+            notifier = {
+                enabled = true,
+                timeout = 3000,
+            },
+            picker = { enabled = true },
+            quickfile = { enabled = true },
+            scope = { enabled = true },
+            scroll = { enabled = false },
+            statuscolumn = { enabled = true },
+            words = { enabled = true },
+            styles = {
+                notification = {
+                    wo = { wrap = true } -- Wrap notifications
+                }
+            }
+        },
+    },
+
+    {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
@@ -71,5 +95,4 @@ return {
             })
         end,
     },
-
 }

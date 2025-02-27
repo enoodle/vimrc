@@ -126,9 +126,6 @@ vim.g.tagbar_type_css = {
 vim.api.nvim_set_keymap('n', '<leader>ev', ':e $MYVIMRC<CR>', { silent = true, noremap = true })
 vim.api.nvim_set_keymap('n', '<leader>sv', ':so $MYVIMRC<CR>', { silent = true, noremap = true })
 
--- FuzzyFinder to find files in current directory
-vim.api.nvim_set_keymap('n', '<F3>', ':FufFileWithCurrentBufferDir<CR>', { silent = true, noremap = true })
-
 -- UltiSnips:
 vim.g.UltiSnipsExpandTrigger = "*&"
 
@@ -150,27 +147,9 @@ vim.api.nvim_create_autocmd('FileType', {
 
 -- Fzf:
 -- ctrlp replacement
-vim.api.nvim_set_keymap('n', '<C-p>', ':FZF<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ';', ':Buffers<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<Leader>t', ':Tags<CR>', { noremap = true, silent = true })
--- Customize fzf colors to match your color scheme
-vim.g.fzf_colors = {
-  fg      = { 'fg', 'Normal' },
-  bg      = { 'bg', 'Normal' },
-  hl      = { 'fg', 'Comment' },
-  ['fg+'] = { 'fg', 'CursorLine', 'CursorColumn', 'Normal' },
-  ['bg+'] = { 'bg', 'CursorLine', 'CursorColumn' },
-  ['hl+'] = { 'fg', 'Statement' },
-  info    = { 'fg', 'PreProc' },
-  border  = { 'fg', 'LineNr' },
-  prompt  = { 'fg', 'Conditional' },
-  pointer = { 'fg', 'Exception' },
-  marker  = { 'fg', 'Keyword' },
-  spinner = { 'fg', 'Label' },
-  header  = { 'fg', 'Comment' }
-}
-
-vim.env.FZF_DEFAULT_COMMAND = 'ag -g ""'
+vim.api.nvim_set_keymap('n', '<C-p>', ':lua Snacks.picker.smart()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', ';', ':lua Snacks.picker.buffers()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<F3>', ':lua Snacks.picker.explorer()<CR>', { silent = true, noremap = true })
 
 -- Ack: (ag)
 if vim.fn.executable('ag') == 1 then
@@ -250,6 +229,7 @@ vim.keymap.set('n', '<Leader>ds', function()
   local widgets = require('dap.ui.widgets')
   widgets.centered_float(widgets.scopes)
 end)
+
 
   -- AI completions
 
