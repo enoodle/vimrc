@@ -111,7 +111,6 @@ return {
                 },
             },
             signature = { enabled = true },
-
         },
         opts_extend = { "sources.default" }
     },
@@ -122,9 +121,6 @@ return {
     'tpope/vim-abolish',
     'sebdah/vim-delve',
 
-    -- Snippets Plugin: ( + dependencies )
-    'SirVer/ultisnips',
-    'honza/vim-snippets',
     'jlanzarotta/bufexplorer',
     'flazz/vim-colorschemes',
 
