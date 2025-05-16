@@ -193,6 +193,8 @@ require('nvim-dap-virtual-text').setup()
 require('dap-go').setup()
 require('dap-python').setup('python3')
 
+vim.keymap.set('n', '<Leader>do', function() require('dapui').open() end)
+vim.keymap.set('n', '<Leader>dc', function() require('dapui').close() end)
 vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
 vim.keymap.set('n', '<F9>', function() require('dap').step_over() end)
 vim.keymap.set('n', '<F7>', function() require('dap').step_into() end)
