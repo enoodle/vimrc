@@ -138,8 +138,6 @@ return {
     'heavenshell/vim-jsdoc',
     'sheerun/vim-polyglot',
     'preservim/vimux',
-    'kamykn/spelunker.vim',
-    'kamykn/popup-menu.nvim',
 
     {
         "folke/snacks.nvim",

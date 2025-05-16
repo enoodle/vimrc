@@ -144,15 +144,8 @@ if vim.fn.executable('ag') == 1 then
 end
 vim.api.nvim_set_keymap('n', '<C-k>', ':Ack! "\\b<cword>\\b"<CR>', { noremap = true, silent = true })
 
--- Spell check git commit messages
-vim.api.nvim_create_autocmd('FileType', {
-  pattern = 'gitcommit',
-  callback = function()
-    vim.opt_local.spell = true
-  end,
-  once = true
-})
-
+vim.opt.spell = true
+vim.api.nvim_set_keymap('n', 'z=', ':lua Snacks.picker.spelling()<CR>', {noremap = true, silent = true})
 
 -- vim-virtualenv
 -- NOTICE: pylint, pyflake has to come from the venv as well
