@@ -243,3 +243,5 @@ require('dap-go').setup({
         port = "10000",
     },
 })
+
+vim.diagnostic.config({virtual_text=true})
