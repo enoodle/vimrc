@@ -31,7 +31,7 @@ return {
         end,
     },
 
-    -- Null-ls
+   -- Null-ls
     {
         'nvimtools/none-ls.nvim',
         config = function()
@@ -49,7 +49,7 @@ return {
         end,
     },
 
-    -- Mason-null-ls
+    -- -- Mason-null-ls
     {
         'jay-babu/mason-null-ls.nvim',
         config = function()
@@ -59,15 +59,8 @@ return {
         end,
     },
 
-    -- Mason-lspconfig
-    {
-        'williamboman/mason-lspconfig.nvim',
-        config = function()
-            require('mason-lspconfig').setup({
-                ensure_installed = { 'pyright', 'ts_ls', 'volar', 'jsonls', 'yamlls', 'gopls', 'lua_ls' },
-            })
-        end,
-    },
+    -- -- Mason-lspconfig
+    {'williamboman/mason-lspconfig.nvim'},
 
     -- LSP Kind
     {
@@ -240,6 +233,35 @@ return {
         opts = {
             library = {
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+            },
+        },
+    },
+
+    {
+        "mfussenegger/nvim-dap",
+        dependencies = {
+            "jbyuki/one-small-step-for-vimkind",
+        },
+        lazy = false,
+        config = function()
+            local dap = require('dap')
+            dap.configurations.lua = {
+                {
+                    type = 'nlua',
+                    request = 'attach',
+                    name = "Attach to running Neovim instance",
+                }
+            }
+
+            dap.adapters.nlua = function(callback, config)
+                callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+            end
+        end,
+        keys = {
+            {
+                "<leader>ddl",
+                "<cmd>lua require('osv').launch({port=8086})<cr>",
+                desc = "start  lua owv server",
             },
         },
     },
