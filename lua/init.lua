@@ -183,7 +183,6 @@ require('lualine').setup({
 -- DAP
 require('dapui').setup()
 require('nvim-dap-virtual-text').setup()
-require('dap-go').setup()
 require('dap-python').setup('python3')
 
 vim.keymap.set('n', '<Leader>do', function() require('dapui').open() end)
@@ -223,18 +222,29 @@ vim.keymap.set('n', '<leader>f', vim.lsp.buf.format)
 
 require('dap-go').setup({
     dap_configurations = {
-        type = "go",
-        name = "Remote",
-        mode = "remote",
-        request = "attach",
-        connect = {
-            host = "127.0.0.1",
-            port = "10000",
+        {
+            type = "go",
+            name = "Remote",
+            mode = "remote",
+            request = "attach",
+            connect = {
+                host = "127.0.0.1",
+                port = "10000",
+            },
         },
     },
     delve = {
         port = "10000",
     },
+})
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'go',
+  callback = function()
+    vim.keymap.set('n', '<Leader>tf', function() require('dap-go').debug_test() end, {
+      noremap = false,
+      buffer = true
+    })
+  end
 })
 
 vim.diagnostic.config({virtual_text=true})
