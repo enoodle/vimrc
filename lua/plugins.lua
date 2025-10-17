@@ -12,20 +12,11 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = { 'saghen/blink.cmp' },
-        config = function()
-            local lspconfig = require('lspconfig')
-
-            -- Enable some LSPs
-            local servers = { 'pyright', 'ts_ls', 'volar', 'jsonls', 'yamlls', 'gopls', 'lua_ls' }
-            for _, lsp in ipairs(servers) do
-                lspconfig[lsp].setup {}
-            end
-        end,
     },
 
     -- Mason
     {
-        'williamboman/mason.nvim',
+        'mason-org/mason.nvim',
         config = function()
             require('mason').setup()
         end,
@@ -60,7 +51,14 @@ return {
     },
 
     -- -- Mason-lspconfig
-    {'williamboman/mason-lspconfig.nvim'},
+    {
+        'mason-org/mason-lspconfig.nvim',
+        opts = {
+            ensure_installed = {
+                'pyright', 'ts_ls', 'vtsls', 'jsonls', 'yamlls', 'gopls', 'lua_ls',
+            },
+        },
+    },
 
     -- LSP Kind
     {
