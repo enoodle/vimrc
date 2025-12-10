@@ -55,7 +55,7 @@ return {
         'mason-org/mason-lspconfig.nvim',
         opts = {
             ensure_installed = {
-                'pyright', 'ts_ls', 'vtsls', 'jsonls', 'yamlls', 'gopls', 'lua_ls',
+                'pyright', 'ts_ls', 'vtsls', 'jsonls', 'yamlls', 'gopls', 'lua_ls', 'bashls',
             },
         },
     },
