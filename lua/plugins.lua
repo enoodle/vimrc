@@ -2,19 +2,49 @@ return {
     'plytophogy/vim-virtualenv',
 
     'tpope/vim-fugitive',
-    'airblade/vim-gitgutter',
-    'easymotion/vim-easymotion',
-    'tpope/vim-surround',
 
-    -- Completion plugin of the week
-    -- {'neoclide/coc.nvim', branch = 'release', build = ':CocInstall coc-yaml coc-go coc-json coc-tsserver coc-pyright coc-sh @yaegassy/coc-volar coc-snippets'},
+    -- #27: gitsigns replaces vim-gitgutter (lua-native, better performance)
+    {
+        'lewis6991/gitsigns.nvim',
+        config = function()
+            require('gitsigns').setup({
+                signs = {
+                    add          = { text = '+' },
+                    change       = { text = '~' },
+                    delete       = { text = '_' },
+                    topdelete    = { text = '‾' },
+                    changedelete = { text = '~' },
+                },
+            })
+        end,
+    },
+
+    -- #26: flash.nvim replaces vim-easymotion (lua-native, faster)
+    {
+        'folke/flash.nvim',
+        event = 'VeryLazy',
+        opts = {},
+        keys = {
+            { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
+            { 'S', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+        },
+    },
+
+    -- #29: nvim-surround replaces vim-surround (lua-native, same keybindings)
+    {
+        'kylechui/nvim-surround',
+        version = '*',
+        event = 'VeryLazy',
+        opts = {},
+    },
+
     -- LSP
     {
         'neovim/nvim-lspconfig',
         dependencies = { 'saghen/blink.cmp' },
     },
 
-    -- Mason
+    -- Mason (must load before mason-lspconfig and mason-null-ls)
     {
         'mason-org/mason.nvim',
         config = function()
@@ -22,9 +52,11 @@ return {
         end,
     },
 
-   -- Null-ls
+    -- #33: Enforce mason dependency ordering
+    -- Null-ls
     {
         'nvimtools/none-ls.nvim',
+        dependencies = { 'mason-org/mason.nvim' },
         config = function()
             local null_ls = require('null-ls')
 
@@ -40,9 +72,10 @@ return {
         end,
     },
 
-    -- -- Mason-null-ls
+    -- Mason-null-ls
     {
         'jay-babu/mason-null-ls.nvim',
+        dependencies = { 'mason-org/mason.nvim', 'nvimtools/none-ls.nvim' },
         config = function()
             require('mason-null-ls').setup({
                 ensure_installed = { 'prettierd', 'goimports', 'gitlint' },
@@ -50,9 +83,10 @@ return {
         end,
     },
 
-    -- -- Mason-lspconfig
+    -- Mason-lspconfig
     {
         'mason-org/mason-lspconfig.nvim',
+        dependencies = { 'mason-org/mason.nvim' },
         opts = {
             ensure_installed = {
                 'pyright', 'ts_ls', 'vtsls', 'jsonls', 'yamlls', 'gopls', 'lua_ls', 'bashls',
@@ -106,28 +140,34 @@ return {
         opts_extend = { "sources.default" }
     },
 
-    -- GO:
-    { 'fatih/vim-go', build = ':GoInstallBinaries' },
-    -- 'charlespascoe/vim-go-syntax',
+    -- GO: (#22: disable vim-go LSP features, let gopls via lspconfig handle it)
+    {
+        'fatih/vim-go',
+        build = ':GoInstallBinaries',
+        config = function()
+            vim.g.go_gopls_enabled = 0
+            vim.g.go_def_mapping_enabled = 0
+            vim.g.go_diagnostics_enabled = 0
+            vim.g.go_doc_keywordprg_enabled = 0
+        end,
+    },
     'tpope/vim-abolish',
-    'sebdah/vim-delve',
+    -- #23: vim-delve removed, nvim-dap-go handles Go debugging
 
-    'jlanzarotta/bufexplorer',
-    'flazz/vim-colorschemes',
+    -- #24: bufexplorer removed, Snacks.picker.buffers() replaces it
+    -- #25: vim-colorschemes replaced with just the neodark theme
+    'KeitaNakamura/neodark.vim',
 
-    'nathanaelkane/vim-indent-guides',
+    -- #16 (from general): vim-indent-guides removed, Snacks indent handles this
     'jeetsukumaran/vim-indentwise',
 
-    -- javascript support
-    'pangloss/vim-javascript',
-    'leafgarland/typescript-vim',
-    'peitalin/vim-jsx-typescript',
+    -- #21: vim-javascript, typescript-vim, vim-jsx-typescript removed
+    -- treesitter handles JS/TS syntax highlighting now
 
     'mileszs/ack.vim',
-    -- 'RRethy/vim-illuminate',
-    'tpope/vim-commentary',
+    -- #28: vim-commentary removed, Neovim 0.10+ has built-in gc commenting
     'heavenshell/vim-jsdoc',
-    'sheerun/vim-polyglot',
+    -- #21: vim-polyglot removed, treesitter supersedes it
     'preservim/vimux',
 
     {
@@ -164,8 +204,35 @@ return {
         dependencies = { 'nvim-tree/nvim-web-devicons' }
     },
 
-    -- DAP
-    'mfussenegger/nvim-dap',
+    -- DAP (#19: consolidated into single nvim-dap declaration)
+    {
+        'mfussenegger/nvim-dap',
+        dependencies = {
+            'jbyuki/one-small-step-for-vimkind',
+        },
+        lazy = false,
+        config = function()
+            local dap = require('dap')
+            dap.configurations.lua = {
+                {
+                    type = 'nlua',
+                    request = 'attach',
+                    name = "Attach to running Neovim instance",
+                }
+            }
+
+            dap.adapters.nlua = function(callback, config)
+                callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
+            end
+        end,
+        keys = {
+            {
+                "<leader>ddl",
+                "<cmd>lua require('osv').launch({port=8086})<cr>",
+                desc = "start lua osv server",
+            },
+        },
+    },
     { 'rcarriga/nvim-dap-ui', dependencies = {'mfussenegger/nvim-dap', 'nvim-neotest/nvim-nio'} },
     { 'theHamsta/nvim-dap-virtual-text', dependencies = {'mfussenegger/nvim-dap',} },
     { 'mfussenegger/nvim-dap-python', dependencies = {'mfussenegger/nvim-dap',} },
@@ -178,7 +245,8 @@ return {
             local configs = require("nvim-treesitter.configs")
 
             configs.setup({
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "html", "go", "lua" },
+                -- #20: removed duplicate "lua" entry
+                ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "html", "go", "typescript", "tsx" },
                 sync_install = false,
                 highlight = { enable = true },
                 illuminate = { enable = true },
@@ -231,35 +299,6 @@ return {
         opts = {
             library = {
                 { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-            },
-        },
-    },
-
-    {
-        "mfussenegger/nvim-dap",
-        dependencies = {
-            "jbyuki/one-small-step-for-vimkind",
-        },
-        lazy = false,
-        config = function()
-            local dap = require('dap')
-            dap.configurations.lua = {
-                {
-                    type = 'nlua',
-                    request = 'attach',
-                    name = "Attach to running Neovim instance",
-                }
-            }
-
-            dap.adapters.nlua = function(callback, config)
-                callback({ type = 'server', host = config.host or "127.0.0.1", port = config.port or 8086 })
-            end
-        end,
-        keys = {
-            {
-                "<leader>ddl",
-                "<cmd>lua require('osv').launch({port=8086})<cr>",
-                desc = "start  lua owv server",
             },
         },
     },

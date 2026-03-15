@@ -126,14 +126,10 @@ vim.keymap.set('n', 'z=', ':lua Snacks.picker.spelling()<CR>', { silent = true }
 -- NOTICE: pylint, pyflake has to come from the venv as well
 vim.g.virtualenv_auto_activate = 1
 
--- vim-illuminate
-vim.api.nvim_set_hl(0, 'illuminatedWord', { link = 'Visual' })
-vim.keymap.set('n', 'ta', ':IlluminateToggle<CR>')
-
--- gitgutter colors
-vim.api.nvim_set_hl(0, 'GitGutterAdd', { fg='#009900', bg='#073642', ctermfg=2, ctermbg=0 })
-vim.api.nvim_set_hl(0, 'GitGutterChange', { fg='#bbbb00', bg='#073642', ctermfg=3, ctermbg=0 })
-vim.api.nvim_set_hl(0, 'GitGutterDelete', { fg='#ff2222', bg='#073642', ctermfg=1, ctermbg=0 })
+-- gitsigns colors
+vim.api.nvim_set_hl(0, 'GitSignsAdd', { fg='#009900', bg='#073642', ctermfg=2, ctermbg=0 })
+vim.api.nvim_set_hl(0, 'GitSignsChange', { fg='#bbbb00', bg='#073642', ctermfg=3, ctermbg=0 })
+vim.api.nvim_set_hl(0, 'GitSignsDelete', { fg='#ff2222', bg='#073642', ctermfg=1, ctermbg=0 })
 
 -- golang configuration
 vim.g.go_fmt_command = "gofmt"
@@ -181,6 +177,7 @@ vim.keymap.set('n', '<Leader>ds', function()
 end)
 
 -- LSP
+vim.keymap.set('n', 'K', vim.lsp.buf.hover)
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition)
 vim.keymap.set('n', '<C-w>gd', function() vim.lsp.buf.definition({ split = 'horizontal' }) end)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation)
