@@ -59,7 +59,7 @@ vim.opt.listchars = { tab = "✗ ", trail = "✗", extends = "»", precedes = "�
 
 -- Unprintable chars mapping
 vim.api.nvim_create_autocmd({"FileType"}, {
-  pattern = { "javascript", "javascript.jsx", "css", "html", "ruby", "yaml", "vue", "xml" },
+  pattern = { "javascript", "javascript.jsx", "css", "html", "ruby", "yaml", "vue", "xml", "json" },
   command = "setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2"
 })
 vim.api.nvim_create_autocmd({"FileType"}, {
