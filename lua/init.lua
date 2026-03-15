@@ -2,50 +2,38 @@ require("config.lazy")
 
 -- Set background to dark
 vim.opt.background = "dark"
--- Allow backspacing over identation, end-of-line, and start-of-line
-vim.opt.backspace = "2"
+-- Allow backspacing over autoindent, line breaks, start of insert
+vim.opt.backspace = "eol,start,indent"
 -- Enable working with hidden buffers
 vim.opt.hidden = true
 -- No beep
-vim.opt.vb = true
+vim.opt.visualbell = true
 -- Ignore case in search
-vim.opt.ic = true
+vim.opt.ignorecase = true
 -- Case sensitive when upper case search pattern
-vim.opt.scs = true
+vim.opt.smartcase = true
 -- While typing search for pattern
 vim.opt.incsearch = true
--- Set Pg Up/Dn to half screen size
-vim.opt.scroll = 0
 -- Set scrolloffset to 0
-vim.opt.so = 0
+vim.opt.scrolloff = 0
 -- Set horizontal scroll offset
 vim.opt.sidescrolloff = 10
 -- Cursor position
-vim.opt.ru = true
+vim.opt.ruler = true
 -- Completion by all buffers, included files, etc
-vim.opt.cpt = ".,w,b,u,t,i"
--- Allow backspacing over autoindent, line breaks, start of insert
-vim.opt.bs = "eol,start,indent"
--- Always show status line
-vim.opt.laststatus = 2
--- Option menu on the lower bar above the command line for vim options
-vim.opt.wildmenu = true
+vim.opt.complete = ".,w,b,u,t,i"
 -- No wrapping of long lines
 vim.opt.wrap = false
 -- For windows resizing
 vim.opt.mouse = "a"
+-- True color support
+vim.opt.termguicolors = true
+-- Persistent undo
+vim.opt.undofile = true
+-- Faster CursorHold and swap file write
+vim.opt.updatetime = 250
 -- Set colorscheme
 vim.cmd("colorscheme neodark")
-
-
--- Enable syntax highlighting
-vim.cmd("syntax on")
--- Enable filetype detection
-vim.cmd("filetype on")
--- Enable filetype-specific indenting
-vim.cmd("filetype indent on")
--- Enable filetype-specific plugins
-vim.cmd("filetype plugin on")
 
 
 -- Indentation
@@ -57,7 +45,7 @@ vim.opt.autoindent = true
 vim.opt.list = true
 vim.opt.listchars = { tab = "✗ ", trail = "✗", extends = "»", precedes = "«" }
 
--- Unprintable chars mapping
+-- Filetype-specific indentation
 vim.api.nvim_create_autocmd({"FileType"}, {
   pattern = { "javascript", "javascript.jsx", "css", "html", "ruby", "yaml", "vue", "xml", "json" },
   command = "setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2"
@@ -67,10 +55,6 @@ vim.api.nvim_create_autocmd({"FileType"}, {
   command = "setlocal expandtab sts=4 sw=4 ts=4"
 })
 vim.api.nvim_create_autocmd({"FileType"}, {
-  pattern = { "*" },
-  command = "setlocal autoindent"
-})
-vim.api.nvim_create_autocmd({"FileType"}, {
   pattern = { "vala" },
   command = "setlocal cindent"
 })
@@ -78,7 +62,6 @@ vim.api.nvim_create_autocmd({"FileType"}, {
   pattern = { "python" },
   command = "let python_highlight_all=1"
 })
-vim.cmd("filetype plugin indent on")
 
 -- wildignore
 -- python
@@ -103,20 +86,13 @@ vim.api.nvim_create_autocmd({ "BufReadPost" }, {  pattern = "*",
 })
 
 -- Ctrl-j to take current line one line lower
-vim.api.nvim_set_keymap('n', '<C-j>', 'O<C-[>j', { noremap = false })
-vim.api.nvim_set_keymap('n', '<M-j>', ':m+<CR>', { noremap = true })
-vim.api.nvim_set_keymap('n', '<M-k>', ':m .-2<CR>', { noremap = true })
+vim.keymap.set('n', '<C-j>', 'O<C-[>j', { remap = true })
+vim.keymap.set('n', '<M-j>', ':m+<CR>')
+vim.keymap.set('n', '<M-k>', ':m .-2<CR>')
 
 -- Quickly edit/reload the vimrc file
-vim.api.nvim_set_keymap('n', '<leader>ev', ':e $MYVIMRC<CR>', { silent = true, noremap = true })
-vim.api.nvim_set_keymap('n', '<leader>sv', ':so $MYVIMRC<CR>', { silent = true, noremap = true })
-
--- UltiSnips:
-vim.g.UltiSnipsExpandTrigger = "*&"
-
--- Start with indent guides
-vim.g.indent_guides_enable_on_vim_startup = 1
-vim.g.indent_guides_color_change_percent = 30
+vim.keymap.set('n', '<leader>ev', ':e $MYVIMRC<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sv', ':so $MYVIMRC<CR>', { silent = true })
 
 vim.g.xml_syntax_folding = 1
 vim.api.nvim_create_autocmd('FileType', {
@@ -124,47 +100,40 @@ vim.api.nvim_create_autocmd('FileType', {
     command = 'setlocal foldmethod=syntax'
 })
 
-vim.g.yml_syntax_folding = 1
 vim.api.nvim_create_autocmd('FileType', {
-    pattern = 'yml',
+    pattern = 'yaml',
     command = 'setlocal foldmethod=syntax'
 })
 
--- Fzf:
--- ctrlp replacement
-vim.api.nvim_set_keymap('n', '<C-p>', ':lua Snacks.picker.smart()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', ';', ':lua Snacks.picker.buffers()<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<F3>', ':lua Snacks.picker.explorer()<CR>', { silent = true, noremap = true })
+-- Snacks picker
+vim.keymap.set('n', '<C-p>', ':lua Snacks.picker.smart()<CR>', { silent = true })
+vim.keymap.set('n', ';', ':lua Snacks.picker.buffers()<CR>', { silent = true })
+vim.keymap.set('n', '<F3>', ':lua Snacks.picker.explorer()<CR>', { silent = true })
+vim.keymap.set('n', '<F8>', ':lua Snacks.picker.lsp_symbols()<CR>', { silent = true })
 
-vim.api.nvim_set_keymap('n', '<F8>', ':lua Snacks.picker.lsp_symbols()<CR>', {noremap = true, silent = true})
-
--- Ack: (ag)
-if vim.fn.executable('ag') == 1 then
+-- Ack: prefer rg over ag
+if vim.fn.executable('rg') == 1 then
+  vim.g.ackprg = 'rg --vimgrep --smart-case'
+elseif vim.fn.executable('ag') == 1 then
   vim.g.ackprg = 'ag --vimgrep'
 end
-vim.api.nvim_set_keymap('n', '<C-k>', ':Ack! "\\b<cword>\\b"<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<C-k>', ':Ack! "\\b<cword>\\b"<CR>', { silent = true })
 
 vim.opt.spell = true
-vim.api.nvim_set_keymap('n', 'z=', ':lua Snacks.picker.spelling()<CR>', {noremap = true, silent = true})
+vim.keymap.set('n', 'z=', ':lua Snacks.picker.spelling()<CR>', { silent = true })
 
 -- vim-virtualenv
 -- NOTICE: pylint, pyflake has to come from the venv as well
 vim.g.virtualenv_auto_activate = 1
 
-
 -- vim-illuminate
 vim.api.nvim_set_hl(0, 'illuminatedWord', { link = 'Visual' })
-vim.api.nvim_set_keymap('n', 'ta', ':IlluminateToggle<CR>', {})
+vim.keymap.set('n', 'ta', ':IlluminateToggle<CR>')
 
 -- gitgutter colors
 vim.api.nvim_set_hl(0, 'GitGutterAdd', { fg='#009900', bg='#073642', ctermfg=2, ctermbg=0 })
 vim.api.nvim_set_hl(0, 'GitGutterChange', { fg='#bbbb00', bg='#073642', ctermfg=3, ctermbg=0 })
 vim.api.nvim_set_hl(0, 'GitGutterDelete', { fg='#ff2222', bg='#073642', ctermfg=1, ctermbg=0 })
-
--- -- Coc Menu colors fix
--- vim.api.nvim_set_hl(0, 'CocMenuSel', { fg='#000000', bg='#C70039', ctermfg=1, ctermbg=0 })
-
-vim.g.spelunker_highlight_type = 2
 
 -- golang configuration
 vim.g.go_fmt_command = "gofmt"
