@@ -19,14 +19,18 @@ return {
         end,
     },
 
-    -- #26: flash.nvim replaces vim-easymotion (lua-native, faster)
+    -- hop.nvim replaces vim-easymotion (lua-native, same workflow)
     {
-        'folke/flash.nvim',
+        'smoka7/hop.nvim',
+        version = '*',
         event = 'VeryLazy',
-        opts = {},
+        opts = { keys = 'etovxqpdygfblzhckisuran' },
         keys = {
-            { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'Flash' },
-            { 'S', mode = { 'n', 'x', 'o' }, function() require('flash').treesitter() end, desc = 'Flash Treesitter' },
+            { '<leader><leader>w', '<cmd>HopWord<cr>', desc = 'Hop to word' },
+            { '<leader><leader>l', '<cmd>HopLine<cr>', desc = 'Hop to line' },
+            { '<leader><leader>f', '<cmd>HopChar1<cr>', desc = 'Hop to char' },
+            { '<leader><leader>s', '<cmd>HopChar2<cr>', desc = 'Hop to 2 chars' },
+            { '<leader><leader>p', '<cmd>HopPattern<cr>', desc = 'Hop to pattern' },
         },
     },
 
