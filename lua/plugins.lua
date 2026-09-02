@@ -46,6 +46,16 @@ return {
     {
         'neovim/nvim-lspconfig',
         dependencies = { 'saghen/blink.cmp' },
+        config = function()
+            -- Include build-tagged files (e.g. e2e, integration) in LSP analysis
+            vim.lsp.config('gopls', {
+                settings = {
+                    gopls = {
+                        buildFlags = { '-tags=e2e,integration' },
+                    },
+                },
+            })
+        end,
     },
 
     -- Mason (must load before mason-lspconfig and mason-null-ls)
