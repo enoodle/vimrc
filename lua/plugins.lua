@@ -193,7 +193,12 @@ return {
             bigfile = { enabled = true },
             dashboard = { enabled = true },
             explorer = { enabled = true },
-            indent = { enabled = true },
+            indent = {
+                enabled = true,
+                filter = function(buf, _win)
+                    return vim.bo[buf].filetype ~= "markdown" and vim.bo[buf].buftype == ""
+                end,
+            },
             input = { enabled = true },
             notifier = {
                 enabled = true,
@@ -201,7 +206,12 @@ return {
             },
             picker = { enabled = true },
             quickfile = { enabled = true },
-            scope = { enabled = true },
+            scope = {
+                enabled = true,
+                filter = function(buf)
+                    return vim.bo[buf].filetype ~= "markdown" and vim.bo[buf].buftype == ""
+                end,
+            },
             scroll = { enabled = false },
             statuscolumn = { enabled = true },
             words = { enabled = true },
@@ -254,17 +264,15 @@ return {
 
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = "main",
+        lazy = false,
         build = ":TSUpdate",
         config = function ()
-            local configs = require("nvim-treesitter.configs")
-
-            configs.setup({
-                -- #20: removed duplicate "lua" entry
-                ensure_installed = { "c", "lua", "vim", "vimdoc", "python", "javascript", "html", "go", "typescript", "tsx" },
-                sync_install = false,
-                highlight = { enable = true },
-                illuminate = { enable = true },
-                indent = { enable = true },
+            local treesitter = require("nvim-treesitter")
+            treesitter.setup()
+            treesitter.install({
+                "c", "lua", "vim", "vimdoc", "python", "javascript", "html", "go", "typescript", "tsx",
+                "markdown", "markdown_inline",
             })
         end,
     },
